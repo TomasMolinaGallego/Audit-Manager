@@ -1,0 +1,48 @@
+modules:
+  jira:globalPage:
+    - key: AuditManager
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: Audit Manager
+      pages:
+      - title: Home
+        route: home
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+      - title: Import catalogues
+        route: import-catalogue
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+      - title: Manage sprint configuration
+        route: manage-sprint
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+      - title: Manage requirements 
+        route: requirements
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+      - title: Manage sprint
+        route: consult-sprint
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+      - title: Sprint history
+        route: history
+        icon: https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Image-File.png
+  function:
+    - key: resolver
+      handler: index.handler
+    - key: panel
+      handler: index.panel
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+app:
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/ecf2ed54-2ec3-47cc-ac9e-f76a37d435e1
+permissions:
+  scopes:
+    - storage:app
+    - read:jira-work
+    - write:jira-work
+    - read:jira-user
+    - read:me
