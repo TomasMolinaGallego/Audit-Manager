@@ -1,3 +1,9 @@
+
+## Para el tribunal del TFM
+
+El funcionamiento de este plugin se puede encontrar en mi página personal de Atlassian Jira: https://tomasmolinaumu.atlassian.net/jira/apps/ecf2ed54-2ec3-47cc-ac9e-f76a37d435e1/e188bea0-5b01-4635-bda6-fcc4db37df25/home
+
+Los catálogos de prueba están incluidos en la carpeta catalogs, son csv donde solo se necesita copiar y pegar
 # Forge Hello World
 
 This project contains a Forge app written in Javascript that displays `Hello World!` in a Jira admin page. 

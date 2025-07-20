@@ -184,11 +184,10 @@ const calculateRisk = (
   const dependenciesFactor = 0.10 * normalizedDependencies;
 
   let cycles = 0;
-  if (req.nAudit > 0 && req.lastAuditSprint) {
-    cycles = Math.min(currentSprint - req.lastAuditSprint, MAX_CYCLES);
-  }
-  const freshnessFactor = 0.15 * (cycles / MAX_CYCLES);
-  let risk = importanceFactor + siblingsFactor + depthFactor + dependenciesFactor + freshnessFactor;
+  cycles = Math.min(currentSprint - (req.lastAuditSprint == undefined ? 0 : req.lastAuditSprint), MAX_CYCLES);
+  console.log(`Cycles for ${req.id}: ${cycles} (currentSprint: ${currentSprint}, lastAuditSprint: ${req.lastAuditSprint})`);
+  const freshnessFactor = (0.15 * (cycles)) + 1;
+  let risk = (importanceFactor + siblingsFactor + depthFactor + dependenciesFactor) * freshnessFactor;
   const auditPenalty = (req.nAudit || 0) > 0 ? 0.5 : 1;
   let finalRisk = risk * auditPenalty * 100;
   return Math.min(Math.max(finalRisk, 0), 100);
@@ -351,7 +350,7 @@ resolver.define('selectRequirementsForAudit', async ({ payload }) => {
   });
   const sortedByRisk = [...auditables].sort((a, b) => (b.riesgo || 0) - (a.riesgo || 0));
   return {
-    selectedRequirements: sortedByRisk.filter(req => !reqsToAvoid.includes(req.id)).slice(0, 30),
+    selectedRequirements: sortedByRisk.filter(req => !reqsToAvoid.includes(req.id)).slice(0, 10),
     totalRequirements: auditables.length
   };
 });
@@ -368,7 +367,7 @@ resolver.define('getAllRequirementsByRisk', async ({ payload }) => {
   const filteredRequirements = allRequirements.filter(req => req.riesgo && req.riesgo > 0);
   const sortedRequirements = filteredRequirements.sort((a, b) => (b.riesgo || 0) - (a.riesgo || 0));
   return {
-    selectedRequirements: sortedRequirements.filter(req => !payload.reqsToAvoid?.includes(req.id)).slice(0, 30)
+    selectedRequirements: sortedRequirements.filter(req => !payload.reqsToAvoid?.includes(req.id)).slice(0, 10)
   };
 });
 

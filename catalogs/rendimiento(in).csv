@@ -1,0 +1,114 @@
+id;level;section;heading;text;important;dependencies
+Perf-1;1;1;Tiempos de Respuesta;;95;
+Perf-2;2;1.1;Operaciones Críticas;Transacciones financieras deben responder en ≤200 ms en condiciones normales de operación;100;
+Perf-3;3;1.1.1;Picos de Carga;Respuesta ≤400 ms durante sobrecargas del 150% de capacidad nominal;95;Perf-2,Perf-9
+Perf-4;3;1.1.2;Validación Inputs;Validación de formularios complejos completada en ≤50 ms;85;
+Perf-5;2;1.2;Consultas;Consultas complejas en datasets de 10M+ registros ejecutadas en ≤2 segundos;90;
+Perf-6;3;1.2.1;Full-Text Search;Búsquedas de texto completo en ≤800 ms sobre 10M+ documentos indexados;85;Perf-5,Perf-87
+Perf-7;2;1.3;APIs REST;Latencia P99 ≤300 ms para endpoints REST en producción;95;Perf-1,Perf-84
+Perf-8;1;2;Escalabilidad;;90;
+Perf-9;2;2.1;Horizontal;Escalado hasta 500% de capacidad inicial sin degradación crítica;95;
+Perf-10;3;2.1.1;Auto-Scaling;Adición automática de nodos en <3 minutos tras detección de sobrecarga;90;Perf-9,Perf-44
+Perf-11;2;2.2;Carga Usuarios;Soporte para 50k usuarios concurrentes con experiencia operativa aceptable;85;
+Perf-12;3;2.2.1;Degradación Controlada;Máximo 10% de degradación de rendimiento bajo carga del 120%;80;
+Perf-13;1;3;Eficiencia de Recursos;;85;
+Perf-14;2;3.1;CPU;Uso máximo de CPU ≤75% durante carga sostenida;90;
+Perf-15;2;3.2;Memoria;Consumo ≤2GB RAM por instancia en operación normal;85;
+Perf-16;3;3.2.1;Gestión Picos;Recuperación a consumo base (≤2GB) en 5 minutos tras picos de 4GB;80;
+Perf-17;2;3.3;Disco;Latencia de operaciones IOPS ≤20ms en almacenamiento persistente;75;
+Perf-18;1;4;Disponibilidad;;100;
+Perf-19;2;4.1;SLA;Disponibilidad anual del 99.99% (≤52 minutos de downtime anual);100;
+Perf-20;3;4.1.1;RTO;Recuperación completa de servicios en <15 minutos tras fallo crítico;95;Perf-19,Perf-35
+Perf-21;2;4.2;Replicación;Desfase máximo de 2 segundos en réplicas entre datacenters;90;
+Perf-22;1;5;Rendimiento Red;;80;
+Perf-23;2;5.1;Ancho Banda;Asignación mínima de 100Mbps por cada 1,000 usuarios concurrentes;75;
+Perf-24;2;5.2;Latencia;Latencia máxima de 50ms para comunicación entre nodos en WAN;85;
+Perf-25;3;5.2.1;Global;Latencia ≤150ms para conexiones intercontinentales;70;
+Perf-26;1;6;Procesamiento Datos;;90;
+Perf-27;2;6.1;Throughput;Capacidad mínima de 5,000 transacciones/segundo en flujos críticos;95;
+Perf-28;2;6.2;Carga Masiva;Procesamiento de datasets de 10GB completado en <5 minutos;85;Perf-26,Perf-52
+Perf-29;3;6.2.1;Formatos;Optimización para procesamiento de datos en formato Parquet+Snappy;75;
+Perf-30;2;6.3;Streaming;Latencia end-to-end ≤500ms para procesamiento de flujos continuos;80;
+Perf-31;1;7;Rendimiento Base de Datos;;95;
+Perf-32;2;7.1;Índices;Respuesta ≤100ms para consultas complejas en tablas de 100M+ registros;90;
+Perf-33;2;7.2;Reindexado;Impacto ≤5% en rendimiento durante operaciones de reindexado;85;
+Perf-34;3;7.2.1;Horario;Ejecución de mantenimiento exclusivamente en ventana 00:00-04:00 local;75;
+Perf-35;2;7.3;Backups;Completado de backups completos de 1TB en <1 hora sin impacto operativo;80;
+Perf-36;1;8;Concurrencia;;85;
+Perf-37;2;8.1;Sesión;Soporte para ≥10,000 sesiones concurrentes con estado;80;Perf-40
+Perf-38;2;8.2;Bloqueos;Detección automática de deadlocks en <10 segundos;90;
+Perf-39;1;9;Caching;;90;
+Perf-40;2;9.1;Hit Ratio;Ratio de aciertos ≥95% para consultas frecuentes en caché;85;
+Perf-41;2;9.2;Invalidación;Propagación de invalidaciones de caché en <500ms en toda la infraestructura;80;
+Perf-42;3;9.2.1;Estrategias;Combinación de TTL + ETag para equilibrio entre actualidad y rendimiento;75;
+Perf-43;1;10;Monitorización;;95;
+Perf-44;2;10.1;Alertas;Detección y notificación de degradaciones >10% en <30 segundos;100;
+Perf-45;2;10.2;Logs;Almacenamiento de métricas históricas por 13 meses para análisis forense;85;
+Perf-46;3;10.2.1;Retención;Rotación diaria automática de logs cuando superen 100MB por instancia;80;
+Perf-47;1;11;Seguridad y Rendimiento;;90;
+Perf-48;2;11.1;Encriptación;Overhead máximo del 15% al habilitar TLS 1.3 en comunicaciones;85;
+Perf-49;2;11.2;Auth;Validación de tokens JWT en ≤5ms por solicitud;90;Perf-47,Perf-50
+Perf-50;3;11.2.1;Cache Auth;Cache de tokens con TTL mínimo de 5 minutos para reducir carga autenticación;80;
+Perf-51;1;12;Batch Processing;;75;
+Perf-52;2;12.1;ETL;Capacidad de procesar 1M+ filas/minuto en transformaciones complejas;80;
+Perf-53;2;12.2;Reportes;Generación de reportes PDF de 100+ páginas en <20 segundos;70;
+Perf-54;1;13;APIs Externas;;80;
+Perf-55;2;13.1;Circuit Breaker;Activación de modo fallback tras 3 fallos consecutivos en 2 segundos;85;
+Perf-56;2;13.2;Timeout;Configuración de timeouts personalizados por servicio con máximo global de 10s;75;
+Perf-57;1;14;Frontend;;70;
+Perf-58;2;14.1;LCP;Largest Contentful Paint ≤2.5s en dispositivos móviles con conexión 4G;75;
+Perf-59;2;14.2;Bundle Size;Tamaño inicial de JavaScript ≤500kB comprimido;65;
+Perf-60;3;14.2.1;Lazy Loading;Carga bajo demanda de módulos según patrones de navegación;60;
+Perf-61;1;15;Compliance;;100;
+Perf-62;2;15.1;Auditoría;Registro de eventos de auditoría con retraso máximo de 100ms;95;
+Perf-63;2;15.2;RGPD;Respuesta a solicitudes de derechos de acceso/borrado en <72 horas;90;
+Perf-64;1;16;Virtualización;;75;
+Perf-65;2;16.1;Cold Start;Inicialización de funciones serverless en ≤1 segundo desde estado frío;80;
+Perf-66;2;16.2;Contenedores;Startup de contenedores <3 segundos para aplicaciones business-critical;70;
+Perf-67;1;17;AI/ML;;85;
+Perf-68;2;17.1;Inferencia;Ejecución de inferencia de modelos de clasificación en ≤500ms por solicitud;80;
+Perf-69;2;17.2;Training;Notificación de progreso tras cada epoch durante entrenamiento;75;
+Perf-70;1;18;IoT;;80;
+Perf-71;2;18.1;Dispositivos;Capacidad de ingesta y procesamiento de 10k mensajes/segundo;85;Perf-81
+Perf-72;2;18.2;Edge;Procesamiento local en dispositivos edge con latencia ≤100ms;75;
+Perf-73;1;19;Video;;70;
+Perf-74;2;19.1;Streaming;Latencia end-to-end ≤5s para streaming en vivo;75;
+Perf-75;2;19.2;Transcoding;Transcodificación en tiempo real de flujos HD 1080p (≥40fps);65;
+Perf-76;1;20;Persistencia;;90;
+Perf-77;2;20.1;Escritura;Latencia ≤10ms para operaciones de escritura en SSD;85;
+Perf-78;2;20.2;Lectura;Latencia ≤5ms para acceso a datos frecuentemente utilizados;80;Perf-40
+Perf-79;3;20.2.1;Prefetching;Implementación de precarga predictiva basada en patrones de acceso;70;
+Perf-80;1;21;Colas de Mensajes;;85;
+Perf-81;2;21.1;Kafka;Throughput sostenido ≥100k mensajes/segundo en clusters productivos;90;
+Perf-82;2;21.2;RabbitMQ;Latencia ≤50ms en colas prioritarias con persistencia habilitada;80;
+Perf-83;1;22;Microservicios;;85;
+Perf-84;2;22.1;Service Mesh;Overhead máximo de 15ms por llamada al implementar service mesh;80;
+Perf-85;2;22.2;Dist Tracing;Recolección y visualización de trazas distribuidas en <200ms;75;
+Perf-86;1;23;Búsquedas;;80;
+Perf-87;2;23.1;Elasticsearch;Respuesta a queries complejas en ≤300ms sobre índices >100GB;85;
+Perf-88;2;23.2;Faceting;Ejecución de agregaciones con facetado complejo en <1 segundo;75;
+Perf-89;1;24;Transacciones;;95;
+Perf-90;2;24.1;ACID;Commit de transacciones críticas completado en ≤50ms;100;Perf-77
+Perf-91;2;24.2;Compensación;Rollback completo de transacciones distribuidas en <5 segundos;85;
+Perf-92;1;25;Geolocalización;;75;
+Perf-93;2;25.1;Reverse Geocoding;Traducción coordenadas→dirección en ≤100ms por solicitud;80;
+Perf-94;2;25.2;Proximidad;Búsqueda por radio de 5km completada en <300ms sobre 10M+ ubicaciones;70;
+Perf-95;1;26;Testing;;85;
+Perf-96;2;26.1;Load Testing;Simulación realista de 100k usuarios concurrentes;80;
+Perf-97;2;26.2;Profiling;Identificación de cuellos de botella de CPU/memoria en ciclos de release;75;
+Perf-98;1;27;CI/CD;;70;
+Perf-99;2;27.1;Builds;Duración de construcción de artefactos <10 minutos por pipeline;75;
+Perf-100;2;27.2;Deploy;Implementación de actualizaciones sin downtime observable;80;
+Perf-101;1;28;Accesibilidad;;80;
+Perf-102;2;28.1;Screen Readers;Renderizado completo para lectores de pantalla en ≤2 segundos;85;
+Perf-103;2;28.2;Contraste;Procesamiento de ajustes dinámicos de contraste en ≤100ms;75;
+Perf-104;1;29;Legacy Systems;;65;
+Perf-105;2;29.1;Adapters;Latencia ≤500ms en comunicación con mainframes legacy;70;
+Perf-106;2;29.2;Protocolos;Soporte para protocolos legacy con latencia ≤200ms por mensaje;60;
+Perf-107;1;30;Configuración;;75;
+Perf-108;2;30.1;Hot Config;Aplicación de cambios de configuración sin reinicio de servicios;80;
+Perf-109;2;30.2;Feature Flags;Activación/desactivación de funcionalidades en runtime en <1 segundo;70;
+Perf-110;1;31;Observabilidad;;90;
+Perf-111;2;31.1;Métricas;Exposición de métricas en formato Prometheus cada <5 segundos;85;
+Perf-112;2;31.2;Traces;Propagación de trazas mediante estándar W3C Trace Context;80;
+Perf-113;3;31.2.1;Sampling;Muestreo adaptable basado en carga del sistema;75;

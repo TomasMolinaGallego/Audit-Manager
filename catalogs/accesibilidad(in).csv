@@ -1,0 +1,51 @@
+id;level;section;heading;text;important
+WebAcc-1;1;1;Principios WCAG 2.2;;100
+WebAcc-2;2;1.1;Perceptible;Como equipo de desarrollo debemos garantizar que la información y componentes de interfaz sean presentados de forma que los usuarios puedan percibirlos;100
+WebAcc-3;3;1.1.1;Alternativas Textuales;Proporcionar texto alternativo para todo contenido no textual que transmita información equivalente;100
+WebAcc-4;3;1.1.2;Subtítulos;Ofrecer subtítulos sincronizados para contenido de audio en medios pregrabados;95
+WebAcc-5;3;1.1.3;Descripciones de Audio;Incluir descripciones de audio para contenido visual pregrabado cuando sea necesario para comprensión;90
+WebAcc-6;2;1.2;Operable;Garantizar que los componentes de interfaz y navegación sean operables mediante diversos métodos;100
+WebAcc-7;3;1.2.1;Navegación por Teclado;Toda funcionalidad debe ser operable mediante interfaz de teclado sin requerimientos de tiempo específico;100
+WebAcc-8;3;1.2.2;Control de Tiempo;Proporcionar mecanismos para pausar, detener u ocultar contenido con movimiento, parpadeo o desplazamiento;85
+WebAcc-9;2;1.3;Comprensible;Hacer que la información y operación de la interfaz sean comprensibles para todos los usuarios;95
+WebAcc-10;3;1.3.1;Identificación de Errores;Identificar errores de entrada claramente con instrucciones específicas y sugerencias de corrección;90
+WebAcc-11;3;1.3.2;Etiquetado de Formularios;Vincular explícitamente cada etiqueta con su control mediante for/id o usando el elemento label;100
+WebAcc-12;2;1.4;Robusto;Asegurar máxima compatibilidad con tecnologías actuales y futuras, incluyendo ayudas técnicas;95
+WebAcc-13;3;1.4.1;Marcado Válido;Garantizar que el HTML se valide sin errores críticos de sintaxis que afecten a las ayudas técnicas;85
+WebAcc-14;1;2;Implementación Técnica;;95
+WebAcc-15;2;2.1;Semántica HTML;Utilizar elementos nativos HTML5 segÃºn su propósito semántico para una estructura accesible;100
+WebAcc-16;3;2.1.1;Jerarquía de Encabezados;Implementar estructura lógica de encabezados (h1-h6) sin saltos de nivel;95
+WebAcc-17;3;2.1.2;Etiquetas ARIA;Usar roles, propiedades y estados ARIA cuando el HTML nativo sea insuficiente para comunicar funcionalidad;90
+WebAcc-18;2;2.2;Navegación;Diseñar sistemas de navegación consistentes y predecibles en todas las páginas;90
+WebAcc-19;3;2.2.1;Orden de Tabulación;Garantizar que el orden de tabulación siga secuencias significativas y operables;100
+WebAcc-20;3;2.2.2;Enfoque Visible;Proveer indicador de foco claramente visible con contraste ?3:1 contra el fondo;95
+WebAcc-21;3;2.2.3;Saltos de Navegación;Implementar mecanismo para saltar bloques de contenido repetitivos en todas las páginas;85
+WebAcc-22;2;2.3;Formularios;Diseñar controles de entrada accesibles con retroalimentación clara;100
+WebAcc-23;3;2.3.1;Agrupación de Campos;Agrupar campos relacionados con fieldset y legend para conjuntos como fechas o direcciones;90
+WebAcc-24;3;2.3.2;Instrucciones de Entrada;Proporcionar instrucciones claras antes de campos complejos como contraseñas o formatos específicos;85
+WebAcc-25;1;3;Diseño Visual;;90
+WebAcc-26;2;3.1;Contraste;Garantizar suficiente contraste entre texto/fondo y elementos de interfaz;100
+WebAcc-27;3;3.1.1;Contraste de Texto;Relación de contraste ?4.5:1 para texto normal y ?3:1 para texto grande (24px/19px bold);100
+WebAcc-28;3;3.1.2;Contraste No Textual;Contraste ?3:1 para componentes UI y gráficos informativos contra colores adyacentes;95
+WebAcc-29;3;3.1.3;Redimensión;Permitir escalado de texto hasta 200% sin pérdida de funcionalidad usando unidades relativas;90
+WebAcc-30;2;3.2;Diseño Responsive;Adaptar contenido a diferentes tamaños de pantalla manteniendo accesibilidad;85
+WebAcc-31;3;3.2.1;Reorganización;Garantizar orden lógico al reorganizarse en diferentes viewports;80
+WebAcc-32;3;3.2.2;Zonas Táctiles;Áreas de activación ?44x44px con espaciado entre controles en interfaces táctiles;85
+WebAcc-33;1;4;Contenido Dinámico;;85
+WebAcc-34;2;4.1;Actualizaciones;Notificar cambios dinámicos de contenido de manera accesible;90
+WebAcc-35;3;4.1.1;Regiones ARIA Live;"Usar politeness=""polite"" para actualizaciones importantes y ""assertive"" para críticas";85
+WebAcc-36;3;4.1.2;Cambios de Contexto;Evitar cambios automáticos al recibir foco o entrada de datos sin confirmación;80
+WebAcc-37;2;4.2;Animaciones;Controlar elementos animados para prevenir molestias o convulsiones;95
+WebAcc-38;3;4.2.1;Parpadeo;Evitar contenido que parpadee más de 3 veces por segundo;100
+WebAcc-39;3;4.2.2;Reducción de Movimiento;Respetar preferencia prefers-reduced-motion mediante media queries;85
+WebAcc-40;1;5;Multimedia Accesible;;85
+WebAcc-41;2;5.1;Contenido de Audio;Proveer alternativas equivalentes para contenido sonoro;90
+WebAcc-42;3;5.1.1;Transcripciones;Ofrecer transcripciones textuales para contenido de audio pregrabado;90
+WebAcc-43;2;5.2;Contenido de Video;Asegurar accesibilidad en material audiovisual;85
+WebAcc-44;3;5.2.1;Subtítulos;Implementar subtítulos sincronizados para diálogos e información sonora relevante;85
+WebAcc-45;3;5.2.2;Audiodescripción;Proveer narración adicional para información visual no expresada en audio;80
+WebAcc-46;1;6;Evaluación y Pruebas;;90
+WebAcc-47;2;6.1;Pruebas Automatizadas;Integrar evaluaciones de accesibilidad en el pipeline de desarrollo;95
+WebAcc-48;3;6.1.1;Herramientas;Usar Axe-core, Lighthouse o WAVE para escaneo continuo;85
+WebAcc-49;2;6.2;Pruebas Manuales;Validar experiencia con usuarios reales y tecnologías asistivas;90
+WebAcc-50;3;6.2.1;Lectores de Pantalla;Verificar compatibilidad con NVDA, JAWS y VoiceOver en flujos críticos;95

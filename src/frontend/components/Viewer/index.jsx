@@ -29,6 +29,7 @@ const StoredCSVRequirementsViewer = () => {
       setError(null);
       try {
         const data = await invoke('getAllCatalogs');
+        console.log('Loaded catalogs:', data);
         setCatalogs(data || []);
       } catch (err) {
         setError(`Error al cargar catálogos: ${err.message || err}`);
@@ -40,6 +41,7 @@ const StoredCSVRequirementsViewer = () => {
   }, []);
 
   useEffect(() => {
+    console.log('Selected catalog changed:', selectedCatalog);
     if (!selectedCatalog) {
       setRequirements([]);
       return;
@@ -184,6 +186,7 @@ const StoredCSVRequirementsViewer = () => {
           </Box>
         ) : (
           <Stack space="space.200">
+            {console.log('Requirements:', requirements)}
             {requirements.length === 0 && selectedCatalog && (
               <SectionMessage appearance="info">
                 No hay requisitos para este catálogo.
