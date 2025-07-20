@@ -162,7 +162,6 @@ const CSVRequirementsLoader = ({ catalogId, onSuccess }) => {
     setLoading(true);
     setError(null);
     try {
-      console.log('Saving requirements:', requirements);
       const result = await invoke('importRequirementsFromCustomCSV', {
         catalogId,
         catalogName,

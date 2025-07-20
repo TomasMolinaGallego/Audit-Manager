@@ -29,7 +29,6 @@ const StoredCSVRequirementsViewer = () => {
       setError(null);
       try {
         const data = await invoke('getAllCatalogs');
-        console.log('Loaded catalogs:', data);
         setCatalogs(data || []);
       } catch (err) {
         setError(`Error al cargar catálogos: ${err.message || err}`);
@@ -41,7 +40,6 @@ const StoredCSVRequirementsViewer = () => {
   }, []);
 
   useEffect(() => {
-    console.log('Selected catalog changed:', selectedCatalog);
     if (!selectedCatalog) {
       setRequirements([]);
       return;
@@ -54,7 +52,6 @@ const StoredCSVRequirementsViewer = () => {
         const hierarchy = await invoke('getRequirementHierarchy', {
           catalogId: selectedCatalog.id
         });
-        console.log('Loaded requirements:', hierarchy);
         setRequirements(hierarchy || []);
       } catch (err) {
         setError(`Error al cargar requisitos: ${err.message || err}`);
@@ -153,7 +150,6 @@ const StoredCSVRequirementsViewer = () => {
 
   const handleCatalogChange = useCallback((option) => {
     const catalog = catalogs.find(c => c.id === option.value);
-    console.log('Selected catalog:', catalog);
     setSelectedCatalog(catalog || null);
   }, [catalogs]);
 
@@ -186,10 +182,9 @@ const StoredCSVRequirementsViewer = () => {
           </Box>
         ) : (
           <Stack space="space.200">
-            {console.log('Requirements:', requirements)}
             {requirements.length === 0 && selectedCatalog && (
               <SectionMessage appearance="info">
-                No hay requisitos para este catálogo.
+                No requirements for this catalog.
               </SectionMessage>
             )}
             {requirements.map(req => (

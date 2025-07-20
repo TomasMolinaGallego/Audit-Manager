@@ -67,10 +67,8 @@ const RiskBasedRequirementSelector = () => {
                 setCatalogs(catalogsData || []);
 
                 setSprintConfig(config);
-                console.log("Sprint Config:", config);
                 setProjectKey(config.projectKey?.value);
                 setIsJiraIssuesEnabled(config.createJiraIssues?.value === "yes");
-                console.log("Project Key:", config.projectKey?.value);
 
                 if (activeSprint) {
                     setActiveSprintData({
@@ -112,7 +110,7 @@ const RiskBasedRequirementSelector = () => {
     const removeRequirementFromTree = useCallback((nodes, requirementId) => {
         return nodes.filter(node => {
             if (node.id === requirementId) {
-                return false; // Remove this node
+                return false;
             }
             if (node.children) {
                 node.children = removeRequirementFromTree(node.children, requirementId);
@@ -203,7 +201,6 @@ const RiskBasedRequirementSelector = () => {
         if (!isJiraIssuesEnabled) {
             return [];
         }
-        console.log("sprintConfig:", sprintConfig);
         const createdIssues = [];
         const updatedRequirements = [];
         for (const requirement of requirements) {
@@ -219,8 +216,6 @@ const RiskBasedRequirementSelector = () => {
                         }]
                     }]
                 };
-                console.log("id del proyecto:", projectKey);
-                // 4. Usar ID del proyecto en lugar de la clave
                 const response = await requestJira('/rest/api/3/issue', {
                     method: 'POST',
                     headers: {
@@ -230,7 +225,7 @@ const RiskBasedRequirementSelector = () => {
                     body: JSON.stringify({
                         fields: {
                             project: {
-                                id: projectKey  // Usar ID en lugar de key
+                                id: projectKey
                             },
                             summary: requirement.heading,
                             description: adfDescription,
@@ -242,8 +237,6 @@ const RiskBasedRequirementSelector = () => {
                 if (response.ok) {
                     const data = await response.json();
                     createdIssues.push(data.key);
-                    console.log("Issue created:", updatedRequirements);
-                    // Actualizar el requisito con la clave del issue de Jira
                     requirement.jiraIssueKey = data.key;
                     updatedRequirements.push({ ...requirement, jiraIssueKey: data.key });
                 } else {
@@ -278,7 +271,6 @@ const RiskBasedRequirementSelector = () => {
                     text: req.text,
                 }))
             };
-            console.log("Sprint data to save:", sprint);
             await invoke('saveSprint', sprint);
 
             setActiveSprintData(sprint);
@@ -309,9 +301,7 @@ const RiskBasedRequirementSelector = () => {
         try {
             setLoading(true);
             setError(null);
-            console.log('Calculating risks for catalog:', selectedCatalog);
             if (selection.selectedCatalog) {
-                console.log('Calculating risks for catalog:', selectedCatalog.id);
                 await invoke('calculateRisksByCatalog', {
                     catalogId: selectedCatalog.id,
                     sprintActual: sprintConfig.sprintNumber,
@@ -320,10 +310,8 @@ const RiskBasedRequirementSelector = () => {
                 const updatedHierarchy = await invoke('getRequirementHierarchy', {
                     catalogId: selectedCatalog.id
                 });
-                console.log('Updated hierarchy:', updatedHierarchy);
                 setRequirements(updatedHierarchy || []);
             } else {
-                console.log('Calculating risks for all catalogs');
                 await invoke('calculateRisksAllCatalogs', {
                     sprintActual: sprintConfig.sprintNumber,
                 });

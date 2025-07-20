@@ -185,7 +185,6 @@ const calculateRisk = (
 
   let cycles = 0;
   cycles = Math.min(currentSprint - (req.lastAuditSprint == undefined ? 0 : req.lastAuditSprint), MAX_CYCLES);
-  console.log(`Cycles for ${req.id}: ${cycles} (currentSprint: ${currentSprint}, lastAuditSprint: ${req.lastAuditSprint})`);
   const freshnessFactor = (0.15 * (cycles)) + 1;
   let risk = (importanceFactor + siblingsFactor + depthFactor + dependenciesFactor) * freshnessFactor;
   const auditPenalty = (req.nAudit || 0) > 0 ? 0.5 : 1;
@@ -284,7 +283,6 @@ resolver.define('getCatalogRequirements', async ({ payload }) => {
 
 resolver.define('getRequirementHierarchy', async ({ payload }) => {
   const catalog = await getCatalog(payload.catalogId);
-  console.log('Loaded catalog requirements:', buildHierarchy(catalog.requirements || []).length);
   return buildHierarchy(catalog.requirements || []);
 });
 
@@ -373,7 +371,6 @@ resolver.define('getAllRequirementsByRisk', async ({ payload }) => {
 
 resolver.define('updateRequirementStoryPoints', async ({ payload }) => {
   const { requirementId, newStoryPoints } = payload;
-  // Actualiza en los catálogos
   const catalogs = await storage.query()
     .where('key', { condition: 'STARTS_WITH', value: 'catalog-' })
     .getMany();
@@ -390,12 +387,10 @@ resolver.define('updateRequirementStoryPoints', async ({ payload }) => {
     }
   }
 
-  // Actualiza en el último sprint (si existe)
   const sprints = await storage.query()
     .where('key', { condition: 'STARTS_WITH', value: 'sprint-' })
     .getMany();
   if (sprints.results.length > 0) {
-    // Busca el sprint con mayor número
     const lastSprintItem = sprints.results
       .map(item => ({
         ...item,
@@ -428,7 +423,6 @@ resolver.define('markAsAudited', async ({ payload }) => {
     .where('key', { condition: 'STARTS_WITH', value: 'catalog-' })
     .getMany();
   let updatedCount = 0;
-  // Actualiza los requirements en los catálogos
   for (const item of catalogs.results) {
     const catalog = item.value as Catalog;
     let modified = false;
@@ -446,7 +440,6 @@ resolver.define('markAsAudited', async ({ payload }) => {
       if (modified) await saveCatalog(catalog);
     }
   }
-  // Actualiza los requirements en el sprint correspondiente
   const sprintKey = `sprint-${sprintNumber}`;
   const sprint = await storage.get(sprintKey);
   if (sprint && Array.isArray(sprint.requirements)) {

@@ -45,9 +45,7 @@ const SprintHistory = () => {
                 setLoading(false);
                 return;
             }
-            console.log('Fetched sprints:', sprints);
 
-            // Ahora los datos de requirements ya están completos en cada sprint
             const sprintsWithRequirements = sprints.map(sprint => ({
                 ...sprint,
                 requirementsData: sprint.requirements || []
