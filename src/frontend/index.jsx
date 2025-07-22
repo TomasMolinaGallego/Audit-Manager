@@ -50,7 +50,7 @@ function ResetButton() {
       console.error('Error deleting all catalogs:', error);
     }
   }, []);
-  return <Button onClick={handleReset}>Reset</Button>;
+  return <Button onClick={handleReset}>Reset all data from plugin</Button>;
 }
 
 const PAGE_COMPONENTS = {

@@ -59,7 +59,6 @@ const FIELD_DEFS = [
   }
 ];
 
-// New field for creating Jira issues
 const JIRA_ISSUE_OPTIONS = [
   { label: "Yes", value: "yes" },
   { label: "No", value: "no" }
@@ -67,7 +66,7 @@ const JIRA_ISSUE_OPTIONS = [
 
 const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
   const [localConfig, setLocalConfig] = useState({
-    createJiraIssues: "no", // Default value for the new field
+    createJiraIssues: "no",
     ...initialConfig
   });
   const [errors, setErrors] = useState({});
@@ -76,7 +75,6 @@ const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
   const [loadingProjects, setLoadingProjects] = useState(true);
   const [projectError, setProjectError] = useState('');
 
-  // Load Jira projects when opening the modal
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -88,7 +86,6 @@ const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
         
         const projectsData = await response.json();
         setProjects(projectsData);
-        // Select the first project by default if none is selected
         if (!localConfig.projectKey && projectsData.length > 0) {
           setLocalConfig(prev => ({
             ...prev,
@@ -107,7 +104,7 @@ const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
 
   useEffect(() => {
     setLocalConfig({
-      createJiraIssues: "no", // Keep default value
+      createJiraIssues: "no",
       ...initialConfig
     });
     setErrors({});
@@ -136,7 +133,6 @@ const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
     });
   }, []);
 
-  // New handler for the create issues option
   const handleJiraIssueOptionChange = useCallback((value) => {
     setLocalConfig(prev => ({
       ...prev,
@@ -156,12 +152,10 @@ const SprintConfigModal = React.memo(({ initialConfig, onSave, onClose }) => {
   const validateForm = useCallback(() => {
     const newErrors = {};
     
-    // Validate that a project has been selected
     if (!localConfig.projectKey) {
       newErrors.projectKey = 'Please select a project';
     }
 
-    // Validate other fields
     FIELD_DEFS.forEach(field => {
       if (!field.validate(localConfig[field.name])) {
         newErrors[field.name] = `Invalid value for ${field.label}`;

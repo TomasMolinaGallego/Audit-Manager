@@ -98,7 +98,6 @@ const AuditRequirementsList = () => {
                 requirementId: id
             });
 
-            // Update states
             updateState(prev => ({
                 requirements: prev.requirements.filter(req => req.id !== id)
             }));
@@ -226,7 +225,6 @@ const AuditRequirementsList = () => {
         return state.requirements.map(req => {
             const isAudited = reqsAuditStatus.alreadyAudited.some(r => r.id === req.id);
             const isSelected = selected.toAudit.some(r => r.id === req.id);
-            console.log("Requirement ID:", req);
             const jiraIssueId = state.activeSprint?.requirements
                 ?.find(r => (r.id === req.id))?.jiraIssueKey || 'N/A';
             return {
